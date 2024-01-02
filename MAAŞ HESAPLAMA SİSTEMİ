@@ -1,4 +1,81 @@
-#include <studio.h>
-#include <stdlib.h>
+#include <studio.h> 
+#include <stdlib.h> // kütüphaneler dahil ediliyor
 
-struct 
+struct CALISAN{ // structure sayesinde tanımlanan farklı değişkenler tek bir pointer içine toplanıyor
+   char ad[16], soyad[20], departman; // karakter türünden değişkenler
+   int rutbe, fazlaMesai, netMaas; // tamsayı türünden değişkenler
+};
+
+void maasHesabi (struct CALISAN *calisan);
+void dosyayaKaydet (struct CALISAN *calisan); // sistem kodu sırayla okuduğu için sonradan kullanılacak iki fonksiyon çağırılmak üzere tanımlanıyor
+
+int main(){ // ana fonksiyon tanımlanıyor
+   struct CALISAN calisan; // CALISAN yapısına ait değişken tanımlanıyor
+   char t;
+   int trigger=1; // ana fonksiyonda tanımlanacak değişken ve türleri
+   printf("Programi baslatamak icin bir tusa basiniz.\n"); // ekrana çıktı verme fonksiyonu
+   scanf("%c", &t); // değişkene değer atayan fonksiyon
+
+   printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n---MAAS HESAPLAMA SISTEMINE HOSGELDINIZ---\n"
+          "LUTFEN ASAGIDAKI TABLOYU INCELEYIP ISTENEN VERILERI GIRINIZ.\n\n"
+          "(a) ----YONETIM----\n"
+          "[1] CEO\n"
+          "\n"
+          "(b) ----SATIS----\n"
+          "[2] SATIS DIREKTORU\n"
+          "[3] SATIS MUDURU\n"
+          "[4] SATIS SORUMLUSU\n"
+          "\n"
+          "(c) ----INSAN KAYNAKLARI----\n"
+          "[5] IK DIREKTORU\n"
+          "[6] IK MUDURU\n"
+          "[7] IK SORUMLUSU\n"
+          "\n"
+          "(d) ----MARKA VE ILETISIM----\n"
+          "[8] MARKA VE ILETISIM DIREKTORU\n"
+          "[9] PR MUDURU\n"
+          "\n"
+          "(e) ----FINANS-MUHASEBE----\n"
+          "[10] FINANS-MUHASEBE DIREKTORU\n"
+          "[11] MUHASEBE MUDURU\n"
+          "[12] MUHASEBE SORUMLUSU\n"
+          "\n"
+          "(f) ----YAZILIM----\n"
+          "[13] LIDER YAZILIMCI\n"
+          "[14] SENIOR YAZILIMCI\n"
+          "[15] JUNIOR YAZILIMCI\n"
+          "----------------------------\n"); // ekrana çıktı verme fonksiyonu
+   
+   while(trigger!=0){ // girilen değer 0 olmadığı sürece altında tanımlanan bloğu döngüye sokan işlem 
+       printf("----------------------------\n");
+       printf("Calisanin adi: \n");
+       scanf("%s", &calisan.ad);
+       printf("Calisanin soyadi: \n");
+       scanf("%s", &calisan.soyad);
+       printf("Calisanin departmani (a-f): \n");
+       scanf("%s", &calisan.departman);
+       printf("Calisanin rutbesi (1-15): \n");
+       scanf("%d", &calisan.rutbe);
+       printf("Calisanin ek mesai saati: \n");
+       scanf("%d", &calisan.fazlaMesai); // girilen değerler yapıda belirtilen değikenlere atanıyor
+
+maasHesabi(&calisan);
+dosyayaKaydet(&calisan); // fonksiyonu çağırır. parantez içindeki gösterim ise bellekteki adresini belirtir
+
+printf("Programi bitirmek icin [0]\n"
+       "Devam etmek icin       [1]\n");
+scanf("%d", &trigger); // devam ya da bitiş komutunu çalıştırır
+
+
+
+
+
+
+   
+
+
+
+
+
+
+     
