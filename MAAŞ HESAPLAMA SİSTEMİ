@@ -178,15 +178,14 @@ void dosyayaKaydet(struct CALISAN *calisan) { // dosyayaKaydet adlı fonksiyonu 
         (calisan->departman == 'e' && calisan->rutbe<13 && calisan->rutbe > 9) || (calisan->departman == 'f' && calisan->rutbe>12 && calisan->rutbe<16)){
         // departman için verilen alan a-f ve rutbe için verilen alan 1-15 olarak tanımlanmıştır. eğer klavyeden girilen değerler bu alanların içindeyse ve doğru yerlerindeyse girilen bloktaki işlemler yapılır.
 
-        fprintf(dosya,
-                              "-----------------------------------------------------------------------------------------------------\n"
-                              "ADI-SOYADI         :%s %s\n"
-                              "DEPARTMANI         :%c         \t    a{Yonetıma Departmanı} b{Satış Departmanı} c{İnsan Kaynakları} d{Marka Ve İletişim}           e{Muhasebe Departmanı}                  \n"
-                              "RUTBESI            :%d         \t    1)Ceo                  2)Satış Direktörü   5)İK Direktörü      8)Marke Ve İletişim Direktörü  10)Muhasebe Direktörü                  \n"
-                              "YAPTIGI FAZLA MESAI:%d SAAT    \t                           3)Satış Müdürü      6)İK Müdürü         9)Pr Sorumlusu                 11)Muhasebe Müdürü                     \n"
-                              "NET MAASI          :%d TL                              4)Satış Sorumlusu   7)İK Sorumlusu                                     12)Muhasebe Sorumlusu                      \n"
-                              "-----------------------------------------------------------------------------------------------------\n"
-                ,calisan->ad, calisan->soyad,calisan->departman, calisan->rutbe, calisan->fazlaMesai, calisan->netMaas); // belirtilen değişken türlerine sırasıyla atanan alanlardaki değerleri yazar
+        fprintf(dosya, "-----------------------------------\n"
+                       "ADI-SOYADI         :%s %s\n"
+                       "DEPARTMANI         :%c\n"
+                       "RUTBESI            :%d\n"
+                       "YAPTIGI FAZLA MESAI:%d SAAT\n"
+                       "NET MAASI          :%dTL\n"
+                       "-----------------------------------\n", calisan->ad, calisan->soyad,
+                calisan->departman, calisan->rutbe, calisan->fazlaMesai, calisan->netMaas); // belirtilen değişken türlerine sırasıyla atanan alanlardaki değerleri yazar
 
 
     } else {
