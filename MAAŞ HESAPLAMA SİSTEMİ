@@ -49,9 +49,9 @@ int main(){ // ana fonksiyon tanımlanıyor
    while(trigger!=0){ // girilen değer 0 olmadığı sürece altında tanımlanan bloğu döngüye sokan işlem 
        printf("----------------------------\n");
        printf("Calisanin adi: \n");
-       scanf("%s", &calisan.ad);
+       scanf("%s", calisan.ad);
        printf("Calisanin soyadi: \n");
-       scanf("%s", &calisan.soyad);
+       scanf("%s", calisan.soyad);
        printf("Calisanin departmani (a-f): \n");
        scanf("%s", &calisan.departman);
        printf("Calisanin rutbesi (1-15): \n");
@@ -64,7 +64,67 @@ dosyayaKaydet(&calisan); // fonksiyonu çağırır. parantez içindeki gösterim
 
 printf("Programi bitirmek icin [0]\n"
        "Devam etmek icin       [1]\n");
-scanf("%d", &trigger); // devam ya da bitiş komutunu çalıştırır
+scanf("%d", &trigger); // while döngüsünü sonlandırır ya da devam ettirir.
+}
+printf("----------------------------\nProgrami sonrandirdiniz. Tekrar gorusmek uzere!\n--------------------\n"); //Arayüz. Program bitiminde ekrana bu satırı yazdırır.
+return 0  //işlemi tamamlar ve sisteme geri teslim eder.
+}
+
+
+void maasHesabi (struct CALISAN *calisan){  //maasHesabi adında, parametresi "struct CALISAN" şeklinde bir pointer olan bir fonksiyon tanımlar. Girilen çalışan (struct CALISAN) verilerini işleme alır.
+ switch (calisan->departman){ //char türünde girilen calisan.departman değişkenindeki değeri alır ve çalışan departmanını switch-case mekanizmasını kullanarak işleme alır.
+  case 'a': 
+   if (calisan->rutbe == 1) { //calisan.rutbe değişkenindeki değeri alır ve çalışan rütbesini if-else mekanizmasını kullanarak işleme alır.
+   calisan->netMaas = 256000 + 895 * calisan->fazlaMesai; //girilen departman ve rütbe değerlerine göre, çalışanın maaşının hangi işlemle hesaplanacağı tespit edilir. Çalışan kişinin maaşını hesaplar ve bu değeri calisan.maas değişkenine atar.
+   printf("CEO %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else
+    printf("YONETIM DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI!\n"); // girilen değerler blok içinde bulunmuşsa diğer durumlara bakmadan direkt olarak sonucu verir.
+    break; 
+  case 'b':
+   if (calisan->rutbe == 2){
+    calisan->netMaas = 67000 + 279 * calisan->fazlaMesai;
+    printf("Satis Direktoru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else if (calisan->rutbe == 3){ 
+    calisan->netMaas = 52000 + 216 * calisan->fazlaMesai;
+    printf("Satis Muduru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else if (calisan->rutbe == 4){
+    calisan->netMaas = 31000 + 129 * calisan->fazlaMesai;
+    printf("Satis Sorumlusu %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else
+    printf("SATIS DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI!\n--------------------\n");
+    break;
+  case 'c':
+   if (calisan->rutbe == 5){
+    calisan->netMaas = 62000 + 258 * calisan->fazlaMesai;
+    printf("Insan Kaynaklari Direktoru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else if (calisan->rutbe == 6){
+    calisan->netMaas = 50000 + 208 * calisan->fazlaMesai;
+    printf("Insan Kaynaklari Muduru  %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else if (calisan->rutbe == 7){
+    calisan->netMaas = 29000 + 120 * calisan->fazlaMesai;
+    printf("Insan Kaynaklari Sorumlusu %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+   else
+    printf("INSAN KAYNAKLARI DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI!\n");
+    break;
+ case 'd':
+  if (calisan->rutbe == 8){
+    calisan->netMaas = 64000 + 266 * calisan->fazlaMesai;
+    printf("Marka-Iletisim Direktoru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+ else if (calisan->rutbe == 9){
+   calisan->netMaas = 60000 + 250 * calisan->fazlaMesai;
+   printf("PR Muduru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+ else
+   printf("MARKA-ILETISIM DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI\n");
+  
 
 
 
