@@ -1,4 +1,4 @@
-#include <studio.h> 
+#include <stdio.h> 
 #include <stdlib.h> // kütüphaneler dahil ediliyor
 
 struct CALISAN{ // structure sayesinde tanımlanan farklı değişkenler tek bir pointer içine toplanıyor
