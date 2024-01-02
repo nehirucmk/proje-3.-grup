@@ -67,7 +67,7 @@ printf("Programi bitirmek icin [0]\n"
 scanf("%d", &trigger); // while döngüsünü sonlandırır ya da devam ettirir.
 }
 printf("----------------------------\nProgrami sonrandirdiniz. Tekrar gorusmek uzere!\n--------------------\n"); //Arayüz. Program bitiminde ekrana bu satırı yazdırır.
-return 0  //işlemi tamamlar ve sisteme geri teslim eder.
+return 0;  //işlemi tamamlar ve sisteme geri teslim eder.
 }
 
 
