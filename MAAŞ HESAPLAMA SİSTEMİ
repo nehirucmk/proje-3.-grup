@@ -124,7 +124,75 @@ void maasHesabi (struct CALISAN *calisan){  //maasHesabi adında, parametresi "s
 }
  else
    printf("MARKA-ILETISIM DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI\n");
-  
+break;
+ case 'e':
+  if (calisan->rutbe == 10){
+   calisan->netMaas = 68000 + 283 * calisan->fazlaMesai;
+   printf("Finans-Muhasebe Direktoru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+  else if (calisan->rutbe == 11){
+   calisan->netMaas = 62000 + 258 * calisan->fazlaMesai;
+   printf("Muhasebe Muduru %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+  else if (calisan->rutbe == 12){
+   calisan->netMaas = 43000 + 179 * calisan->fazlaMesai;
+   printf("Muhasebe Sorumlusu %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+  else
+   printf("FINANS-MUHASEBE DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI\n");
+break;
+ case 'f':
+  if (calisan->rutbe == 13){
+   calisan->netMaas = 113000 + 470 * calisan->fazlaMesai;
+   printf("Lider Yazilimci %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas); 
+}
+  else if (calisan->rutbe == 14){
+   calisan->netMaas = 92000 + 383 * calisan->fazlaMesai;
+   printf("Senior Yazilimci %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+  else if (calisan->rutbe == 15){
+   calisan->netMaas = 60000 + 250 * calisan->fazlaMesai;
+   printf("Junior Yazilimci %s %s. Maasi: %d TL.\n--------------------\n", calisan->ad, calisan->soyad, calisan->netMaas);
+}
+  else
+   printf("YAZILIM DEPARTMANINDA ARADIGINIZ RUTBE BULUNAMADI\n");
+break;
+   default: // geçerli değer girilmemesi durumunda hata verir
+   printf("LUTFEN TABLODAKI HARFLERDEN BIRINI GIRINIZ!\n");
+    }
+}
+
+void dosyayaKaydet(struct CALISAN *calisan) { // dosyayaKaydet adlı fonksiyonu çalıştırır. parametre olarak 'struct CALISAN' alır ve pointer aracılığıyla 'calisan' değişkeninin adresindeki değerleri kullanır
+    FILE *dosya; // FILE türünde, 'dosya' adında bir pointer tanımlanıyor
+    dosya = fopen("maas.txt", "a"); // dosya açma fonskiyonunu kullanarak 'maas.txt' adlı dosya açılıyor ve sonraki işlemlerde kullanılmak üzere dosya değişkenine atanıyor. "a", dosyaya ekleme (append) modunu belirtir. her işlem sonrası dosyaya değişiklikleri ekler.
+
+    if (dosya == NULL) { // dosyanın açılıp açılmadığını kontrol eden karar yapısı. eğer dosya == NULL olursa dosyanın açılamadığını belirtir.
+        printf("DOSYA ACILAMIYOR!\n");
+        exit(1); // hata durumunda kodu sonlandırıp çıkış yapar
+    }
+
+    if ((calisan->departman == 'a' && calisan->rutbe == 1) || (calisan->departman == 'b' && calisan->rutbe>1 && calisan->rutbe<5) ||
+        (calisan->departman == 'c' && calisan->rutbe<8 && calisan->rutbe>4) || (calisan->departman == 'd' && calisan->rutbe<10 && calisan->rutbe>7) ||
+        (calisan->departman == 'e' && calisan->rutbe<13 && calisan->rutbe > 9) || (calisan->departman == 'f' && calisan->rutbe>12 && calisan->rutbe<16)){
+        // departman için verilen alan a-f ve rutbe için verilen alan 1-15 olarak tanımlanmıştır. eğer klavyeden girilen değerler bu alanların içindeyse ve doğru yerlerindeyse girilen bloktaki işlemler yapılır.
+
+        fprintf(dosya,
+                              "-----------------------------------------------------------------------------------------------------\n"
+                              "ADI-SOYADI         :%s %s\n"
+                              "DEPARTMANI         :%c         \t    a{Yonetıma Departmanı} b{Satış Departmanı} c{İnsan Kaynakları} d{Marka Ve İletişim}           e{Muhasebe Departmanı}                  \n"
+                              "RUTBESI            :%d         \t    1)Ceo                  2)Satış Direktörü   5)İK Direktörü      8)Marke Ve İletişim Direktörü  10)Muhasebe Direktörü                  \n"
+                              "YAPTIGI FAZLA MESAI:%d SAAT    \t                           3)Satış Müdürü      6)İK Müdürü         9)Pr Sorumlusu                 11)Muhasebe Müdürü                     \n"
+                              "NET MAASI          :%dTL                                    4)Satış Sorumlusu   7)İK Sorumlusu                                     12)Muhasebe Sorumlusu                      \n"
+                              "-----------------------------------------------------------------------------------------------------\n"
+                ,calisan->ad, calisan->soyad,calisan->departman, calisan->rutbe, calisan->fazlaMesai, calisan->netMaas); // belirtilen değişken türlerine sırasıyla atanan alanlardaki değerleri yazar
+
+
+    } else {
+        printf("DOSYA OLUSTURULAMADI. LUTFEN TABLOYA GORE GECERLI DEGERLER GIRINIZ!\n"); // girilen değerler istenen alanların dışındaysa hata verir
+    }
+
+    fclose(dosya); // başarıyla işlemi gerrçekleşen dosyayı kapatır
+}  
 
 
 
