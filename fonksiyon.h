@@ -3,4 +3,4 @@
 void maasHesabi (struct CALISAN *calisan);
 void dosyayaKaydet(struct CALISAN *calisan);
 void menuGoster();
-#endif
+#endif // fonksiyon_h
