@@ -1,5 +1,5 @@
 #include <stdio.h> 
-#include <stdlib.h> // kütüphaneler dahil ediliyor
+#include "fonksiyon.h" // kütüphaneler dahil ediliyor
 
 struct CALISAN{ // structure sayesinde tanımlanan farklı değişkenler tek bir pointer içine toplanıyor
    char ad[16], soyad[20], departman; // karakter türünden değişkenler
