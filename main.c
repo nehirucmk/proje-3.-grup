@@ -18,9 +18,9 @@ int main(){ // ana fonksiyon tanımlanıyor
    while(trigger!=0){ // girilen değer 0 olmadığı sürece altında tanımlanan bloğu döngüye sokan işlem 
        printf("----------------------------\n");
        printf("Calisanin adi: ");
-       scanf("%s", calisan.ad);
+       scanf("%s", &calisan.ad);
        printf("Calisanin soyadi: ");
-       scanf("%s", calisan.soyad);
+       scanf("%s", &calisan.soyad);
        printf("Calisanin departmani (a-f): ");
        scanf("%s", &calisan.departman);
        printf("Calisanin rutbesi (1-15): ");
